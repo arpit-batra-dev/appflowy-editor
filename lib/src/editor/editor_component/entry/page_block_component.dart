@@ -52,31 +52,29 @@ class PageBlockComponent extends BlockComponentStatelessWidget {
     final items = node.children;
 
     if (scrollController == null || scrollController.shrinkWrap) {
-      return SingleChildScrollView(
-        child: Builder(
-          builder: (context) {
-            final scroller = Scrollable.maybeOf(context);
-            if (scroller != null) {
-              editorState.updateAutoScroller(scroller);
-            }
-            return Column(
-              children: [
-                if (header != null) header!,
-                ...items.map(
-                  (e) => Container(
-                    constraints: BoxConstraints(
-                      maxWidth:
-                          editorState.editorStyle.maxWidth ?? double.infinity,
-                    ),
-                    padding: editorState.editorStyle.padding,
-                    child: editorState.renderer.build(context, e),
+      return Builder(
+        builder: (context) {
+          final scroller = Scrollable.maybeOf(context);
+          if (scroller != null) {
+            editorState.updateAutoScroller(scroller);
+          }
+          return Column(
+            children: [
+              if (header != null) header!,
+              ...items.map(
+                (e) => Container(
+                  constraints: BoxConstraints(
+                    maxWidth:
+                        editorState.editorStyle.maxWidth ?? double.infinity,
                   ),
+                  padding: editorState.editorStyle.padding,
+                  child: editorState.renderer.build(context, e),
                 ),
-                if (footer != null) footer!,
-              ],
-            );
-          },
-        ),
+              ),
+              if (footer != null) footer!,
+            ],
+          );
+        },
       );
     } else {
       int extentCount = 0;
