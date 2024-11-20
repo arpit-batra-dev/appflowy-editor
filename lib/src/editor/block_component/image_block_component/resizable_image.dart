@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:appflowy_editor/appflowy_editor.dart';
+import 'package:appflowy_editor/src/editor/block_component/image_block_component/image_preview_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:string_validator/string_validator.dart';
 
@@ -64,8 +65,21 @@ class _ResizableImageState extends State<ResizableImage> {
           onExit: (event) => setState(() {
             onFocus = false;
           }),
-          child: _buildResizableImage(context),
+          child: GestureDetector(
+              onTap: () {
+                _openImagePreview(context);
+              },
+              child: _buildResizableImage(context)),
         ),
+      ),
+    );
+  }
+
+  void _openImagePreview(BuildContext context) {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (_) => ImagePreviewScreen(imageUrl: widget.src),
       ),
     );
   }
