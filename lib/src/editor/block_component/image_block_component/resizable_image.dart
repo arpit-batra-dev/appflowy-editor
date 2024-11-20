@@ -53,22 +53,23 @@ class _ResizableImageState extends State<ResizableImage> {
 
   @override
   Widget build(BuildContext context) {
-    return Align(
-      alignment: widget.alignment,
-      child: SizedBox(
-        width: max(_kImageBlockComponentMinWidth, imageWidth - moveDistance),
-        height: widget.height,
-        child: MouseRegion(
-          onEnter: (event) => setState(() {
-            onFocus = true;
-          }),
-          onExit: (event) => setState(() {
-            onFocus = false;
-          }),
-          child: GestureDetector(
-              onTap: () {
-                _openImagePreview(context);
-              },
+    return GestureDetector(
+      onTap: () {
+        print("Tapped on image");
+        _openImagePreview(context);
+      },
+      child: Align(
+        alignment: widget.alignment,
+        child: SizedBox(
+          width: max(_kImageBlockComponentMinWidth, imageWidth - moveDistance),
+          height: widget.height,
+          child: MouseRegion(
+              onEnter: (event) => setState(() {
+                    onFocus = true;
+                  }),
+              onExit: (event) => setState(() {
+                    onFocus = false;
+                  }),
               child: _buildResizableImage(context)),
         ),
       ),
