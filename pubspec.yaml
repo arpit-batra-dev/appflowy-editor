@@ -24,10 +24,11 @@ dependencies:
   intl: "^0.19.0"
   keyboard_height_plugin: "^0.1.5"
   logging: "^1.2.0"
-  markdown:
-    git:
-      url: https://github.com/arpit-batra-dev/markdown.git
-      ref: main
+  markdown: "^7.2.1"
+  # markdown:
+  #   git:
+  #     url: https://github.com/arpit-batra-dev/markdown.git
+  #     ref: main
   nanoid: "^1.0.0"
   numerus: "^2.1.2"
   pdf: "^3.10.7"
